@@ -1,0 +1,154 @@
+Selenium:
+
+Locators:
+
+Selenium webdriver uses 8 locators to find the elements on web page. The following are the list of object identifier or locators supported by selenium.
+
+We have prioritized the list of locators to be used when scripting.
+
+id - >
+Select element with the specified @id attribute.
+---------------------------------------------------------------
+Name
+Select first element with the specified @name attribute.
+---------------------------------------------------------------
+Linktext
+Select link (anchor tag) element which contains text matching the specified link text
+-------------------------------------------------------------------------------------------
+Partial Linktext
+Select link (anchor tag) element which contains text matching the specified partial link text
+-----------------------------------------------------------------------------------------------
+Tag Name
+Locate Element using a Tag Name .
+------------------------------------------------------------------------------------------------
+Class name
+Locate Element using a Tag Name ..
+--------------------------------------------------------------------------------------------
+Css
+Select the element using css selectors. You can check here for Css examples and You can also refer W3C CSS Locatros
+--------------------------------------------------------------------------------------------------------------------
+Xpath
+Locate an element using an XPath expression.
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+Basic Functions:
+
+1.Browser Back and Forward (NAVIGATION)
+Steps to implement Browser back and forward through Selenium Web Driver
+1. Create Driver for any Browser(Mozilla)
+2. Go to the URL
+3. Navigate to some page in website.
+4. Use Selenium code to Navigate Back to Main Page.
+CODE: driver.navigate().back();
+      driver.navigate().forward();
+Example
+
+WebDriver driver =new FirefoxDriver();
+driver.get("http://seleniumhq.org/");
+driver.findElement(By.linkText("Download")).click();
+Thread.sleep(3000);            //delay
+driver.navigate().back();
+driver.navigate().forward();
+
+
+
+
+
+2.Handling DRAG and DROP
+
+Steps to Handle Drag and Drop through Selenium Web Driver
+
+1. Create Driver for any Browser(Mozilla)
+2. Go to the URL
+3. Create an Action object for Driver
+4. Fetch and create WebElement object for the SOURCE element.
+5. Fetch  and create WebElement object for the DESTINATION element.
+     .,m//////////////////////////////////66.Perform ACTION
+  1.Click and Hold the source WebElement
+  2.Move to destination WebElement
+  3.Release the Element.
+
+Example
+
+WebDriver driver = new FirefoxDriver();
+driver.get("http://www.ericbieller.com/examples/dragdrop/");
+driver.manage().timeouts().implicitlyWait(3,TimeUnit.MINUTES);
+ 
+Actions act = new Actions(driver);
+WebElement src = driver.findElement(By.xpath("//div[@id='items']/div[1]"));
+WebElement des = driver.findElement(By.id("trash"));
+ 
+act.clickAndHold(src).build().perform();                //For each action we need to build and Perform
+act.moveToElement(des).build().perform();
+
+
+
+
+4.Making Single Select in Drop down (By INDEX, VALUE, TEXT)
+Steps to make Single Select in Drop down through Selenium Web Driver.
+
+1. Create Driver for any Browser(Mozilla)
+2. Go to the URL
+3. Fetch the Drop Down element and create an object as WebElement.
+4. Convert the Drop Down Element in to Select object.
+5. Select by INDEX
+6. Select by VALUE
+7. Select by VISIBLE TEXT
+
+Example
+
+
+WebElement customerdd = driver.findElement(By.name("customerProject.shownCustomer"));
+  //convert the element to select object
+  Select cust = new Select(customerdd);
+  cust.selectByIndex(1);                                       //Select by Index
+  Thread.sleep(3000);
+  cust.selectByValue("2");                                   //Select by Value
+  Thread.sleep(3000);
+  cust.selectByVisibleText("mango");                //Select by Visible Text
+
+
+
+
+
+
+
+10. TABS / New Window
+
+When Browser opens in a new window or in a new tab, Web Driver cannot shift the control to the new Window/ Tab. We need to collect the window handles in a page. Whenever a new window opens we need to iterate and shift to the latest window handle.
+
+TABS/New Window - 1
+
+Steps to iterate through the Window Handles
+
+1. Create Driver for any Browser(Mozilla)
+2. Go to the URL
+3. Collect Window Handles through Set
+4. Create an iterator to iterate through Window Handles.
+5. At First iterator will not be pointing to any Window Handle, only First increment Points to First Window Handle, Second increment Points to second iterator.
+
+
+Set windowHandles = driver.getWindowHandles();
+Iterator it = windowHandles.iterator();
+while(it.hasNext())
+{
+ System.out.println(it.next());
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
